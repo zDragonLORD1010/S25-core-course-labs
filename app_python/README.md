@@ -14,10 +14,10 @@ Before running the application, ensure you have the following installed:
 ## Installation
 
 **1. Clone the repository:**
-*git clone <https://github.com/your-username/your-repo-name.git>*
+*git clone <https://github.com/zDragonLORD1010/S25-core-course-labs.git>*
 
 **2. Navigate to the project folder:**
-*cd your-repo-name/app_python*
+*cd /<your-path>/S25-core-course-labs//app_python*
 
 **3. Install dependencies:**
 *pip install -r requirements.txt*
