@@ -14,10 +14,10 @@ Before running the application, ensure you have the following installed:
 ## Installation
 
 **1. Clone the repository:**
-*git clone <https://github.com/your-username/your-repo-name.git>*
+*git clone <https://github.com/zDragonLORD1010/S25-core-course-labs.git>*
 
 **2. Navigate to the project folder:**
-*cd your-repo-name/app_python*
+*cd /your_path/S25-core-course-labs/app_python*
 
 **3. Install dependencies:**
 *pip install -r requirements.txt*
@@ -30,3 +30,26 @@ Before running the application, ensure you have the following installed:
 Navigate to http://127.0.0.1:5000/ to view the application.
 - Check the output:
 You should see the current time in Moscow displayed on the page.
+
+## Docker
+
+### Steps to build, push, and run Docker
+
+- **Build the Docker Image:**
+_docker build -t moscow-time-app:1.0 ._
+
+- **Run Docker locally:**
+_docker run -p 5000:5000 moscow-time-app:1.0_
+
+### Push to Docker Hub (put your dockerhub username instead of your_username)
+
+- **Tag the image:**
+*docker tag moscow-time-app:1.0 your_username/moscow-time-app:1.*
+
+- **Push the image:**
+*docker push <username>/moscow-time-app:1.0*
+
+### Pull and run Docker
+
+- *docker pull your_username/moscow-time-app:1.0*
+- *docker run -p 5000:5000 your_username/moscow-time-app:1.0*
