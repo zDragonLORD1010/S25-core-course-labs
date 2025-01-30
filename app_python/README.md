@@ -17,7 +17,7 @@ Before running the application, ensure you have the following installed:
 *git clone <https://github.com/zDragonLORD1010/S25-core-course-labs.git>*
 
 **2. Navigate to the project folder:**
-*cd /<your-path>/S25-core-course-labs//app_python*
+*cd /your_path/S25-core-course-labs/app_python*
 
 **3. Install dependencies:**
 *pip install -r requirements.txt*
