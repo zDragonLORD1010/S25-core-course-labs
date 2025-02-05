@@ -2,10 +2,6 @@ import pytest
 from app_python.app import app
 from datetime import datetime
 import pytz
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 
 @pytest.fixture

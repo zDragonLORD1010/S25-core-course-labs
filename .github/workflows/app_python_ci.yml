@@ -27,11 +27,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./app_python/requirements.txt
 
-      - name: Set PYTHONPATH
-        run: |
-          echo "PYTHONPATH=$GITHUB_WORKSPACE/app_python" >> $GITHUB_ENV
-          echo "PYTHONPATH set to $GITHUB_WORKSPACE/app_python"
-
       - name: Run Linter (flake8)
         run: |
           pip install flake8
@@ -40,6 +35,7 @@ jobs:
       - name: Run tests
         run: |
           pip install pytest
+          cd app_folder
           pytest
 
   docker:
