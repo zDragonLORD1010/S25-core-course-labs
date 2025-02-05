@@ -83,3 +83,4 @@ The following dependencies are required to run this application:
 - pytz 2024.2
 - pytest 8.3.0
 - Jinja2 3.1.5
+
