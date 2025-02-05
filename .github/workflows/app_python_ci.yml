@@ -35,7 +35,6 @@ jobs:
       - name: Run tests
         run: |
           pip install pytest
-          cd app_folder
           pytest
 
   docker:
