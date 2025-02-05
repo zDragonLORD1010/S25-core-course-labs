@@ -89,3 +89,20 @@ To run all unit tests, execute:
 ```bash
 pytest
 ```
+
+## Continuous Integration (CI) best practices
+
+### 1. Workflow enhancements 
+
+[![CI workflow python app](https://github.com/zDragonLORD1010/S25-core-course-labs/actions/workflows/app_python_ci.yml/badge.svg)](https://github.com/zDragonLORD1010/S25-core-course-labs/actions/workflows/app_python_ci.yml)
+
+- Added **GitHub Actions status badge** to monitor workflow status.
+
+- Implemented **caching for dependencies** to speed up builds.
+
+### 2. Security best practices
+- Integrated **Snyk Vulnerability Scanning** to detect security issues in dependencies.
+
+### 3. Optimization steps
+- Improved workflow efficiency by reducing redundant steps.
+- Used best practices in job dependencies to prevent unnecessary re-runs.
