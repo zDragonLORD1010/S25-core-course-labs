@@ -10,5 +10,3 @@ def show_time():
     current_time = datetime.now(moscow_tz).strftime("%Y-%m-%d %H:%M:%S")
     return render_template("index.html", current_time=current_time)
 
-if __name__ == "__main__":
-    app.run(debug=True)

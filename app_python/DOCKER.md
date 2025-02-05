@@ -1,4 +1,4 @@
-## Docker Best Practices Applied
+## Docker best practices applied
 
 ### Non-root user
 
@@ -7,19 +7,19 @@
 
 ### Environmental variables
 
-- To stop Python from writing **_.pyc_** files, set **_PYTHONDONTWRITEBYTECODE=1_**.
-- In order to guarantee constant logging, set **_PYTHONUNBUFFERED=1_**.
+- To stop Python from writing `.pyc` files, set `PYTHONDONTWRITEBYTECODE=1`.
+- In order to guarantee constant logging, set `PYTHONUNBUFFERED=1`*.
 
 ### Optimized layers of data
 
-- To reduce picture size, dependencies were installed in a single layer using **_--no-cache-dir_**.
+- To reduce picture size, dependencies were installed in a single layer using `--no-cache-dir`.
 
-- Only relevant files were added to the container using **_COPY_**.
+- Only relevant files were added to the container using `COPY`.
 
-### Minimal Base Image
+### Minimal base image
 
-- Python 3.9 was used to create a tiny, safe base image using **_python:3.9-alpine3.15_**.
+- Python 3.9 was used to create a tiny, safe base image using `python:3.9-alpine3.15`.
 
-### .dockerignore file
+### `.dockerignore` file
 
-- To increase build speed and efficiency, superfluous files were removed from the build context using **_.dockerignore_**.
+- To increase build speed and efficiency, superfluous files were removed from the build context using `.dockerignore`.
