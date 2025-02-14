@@ -2,6 +2,8 @@
 
 After installing and updating `docker` and `terraform` to continue working on the task, I obtained `terraform` project data. However, some data could not be received due to an Error: "configuring Terraform AWS Provider: no valid credential sources for Terraform AWS Provider found." I used different proxies and VPNs, used different operating systems, and rewrote the code to fix this error, but I still couldn't continue working. After some stage described in the attached guide, the terraform apply command stopped working. Therefore, I have attached all the files that I could make in this lab in the terraform folder.
 
+*I removed the from `terraform.tfvars` token because github forbade uploading data without protection to the server, and also deleted the folders `.terraform` because they took up a lot of space and git didn't want to accept them.*
+
 ## Installation and setup
 
 1. **Install `terraform`**:
