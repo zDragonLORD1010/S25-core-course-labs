@@ -6,7 +6,7 @@ This project uses Ansible to automate the deployment of Docker and Docker Compos
 
 ## Ansible structure
 
-The structure differs from the specified one. Namely, the roles folder has been moved to the dev folder. In the process, I encountered an error (The error description is attached below.) that I couldn't fix, so I did everything as required in the error description. Otherwise, the ansible structure is no different.
+The structure differs from the specified one. Namely, the `roles` folder has been moved to the `dev` folder. In the process, I encountered an error (The error description is attached below.) that I couldn't fix, so I did everything as required in the error description. Otherwise, the `ansible` structure is no different.
 
 ### Error description
 
@@ -58,7 +58,7 @@ ansible
 |-- ANSIBLE.md
 ```
 
-## Inventory Structure
+## Inventory structure
 
 The inventory is structured to support EC2 instances in AWS and uses SSH for remote communication. The `default_aws_ec2.yml` inventory file contains the details for connecting to the cloud VM.
 
@@ -335,4 +335,81 @@ your-ec2-instance          : ok=12   changed=0    unreachable=0    failed=0    s
 Docker Compose version v2.20.3
 (venv) egor@egor-100-HP:~/PycharmProjects/S25-core-course-labs$ docker --version
 Docker version 27.2.0, build 3ab4256
+```
+
+## Playbook for `web_app` role and output
+
+### Playbook:
+
+```yaml
+- name: Deploy docker on Cloud VM
+  hosts: all
+  become: true
+  vars:
+    web_app_full_wipe: true
+  roles:
+#    - geerlingguy.docker
+#    - docker
+    - web_app
+```
+
+### Output:
+
+```
+(venv) egor@egor-100-HP:~/PycharmProjects/S25-core-course-labs$ ansible-playbook -i ansible/inventory/default_aws_ec2.yml ansible/playbooks/dev/main.yaml
+
+PLAY [Deploy docker on Cloud VM] *********************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************************************
+ok: [your-ec2-instance]
+
+TASK [web_app : Include wipe tasks] ******************************************************************************************************************************
+included: /home/egor/PycharmProjects/S25-core-course-labs/ansible/playbooks/dev/roles/web_app/tasks/0-wipe.yml for your-ec2-instance
+
+TASK [web_app : Stop and remove Docker containers] ***************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Remove Docker images] ****************************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Remove application directory] ********************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Remove Docker Compose binary] ********************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Ensure appgroup exists] **************************************************************************************************************************
+ok: [your-ec2-instance]
+
+TASK [web_app : Ensure appuser exists] ***************************************************************************************************************************
+ok: [your-ec2-instance]
+
+TASK [web_app : Ensure application directory exists] *************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Copy application files to the server (excluding venv)] *******************************************************************************************
+[DEPRECATION WARNING]: The connection's stdin object is deprecated. Call display.prompt_until(msg) instead. This feature will be removed in version 2.19. 
+Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+changed: [your-ec2-instance]
+
+TASK [web_app : Ensure Docker Compose file is present] ***********************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Ensure Docker Python SDK is installed] ***********************************************************************************************************
+ok: [your-ec2-instance]
+
+TASK [web_app : Download Docker Compose binary] ******************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Ensure Docker Compose is executable] *************************************************************************************************************
+ok: [your-ec2-instance]
+
+TASK [web_app : Ensure Docker containers are running] ************************************************************************************************************
+changed: [your-ec2-instance]
+
+TASK [web_app : Ensure Docker containers are started] ************************************************************************************************************
+changed: [your-ec2-instance]
+
+PLAY RECAP *******************************************************************************************************************************************************
+your-ec2-instance          : ok=16   changed=10   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0    
 ```
