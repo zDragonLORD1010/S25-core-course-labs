@@ -6,7 +6,7 @@ This project uses Ansible to automate the deployment of Docker and Docker Compos
 
 ## Ansible structure
 
-The structure differs from the specified one. Namely, the roles folder has been moved to the dev folder. In the process, I encountered an error (The error description is attached below.) that I couldn't fix, so I did everything as required in the error description. Otherwise, the ansible structure is no different.
+The structure differs from the specified one. Namely, the `roles` folder has been moved to the `dev` folder. In the process, I encountered an error (The error description is attached below.) that I couldn't fix, so I did everything as required in the error description. Otherwise, the `ansible` structure is no different.
 
 ### Error description
 
@@ -58,7 +58,7 @@ ansible
 |-- ANSIBLE.md
 ```
 
-## Inventory Structure
+## Inventory structure
 
 The inventory is structured to support EC2 instances in AWS and uses SSH for remote communication. The `default_aws_ec2.yml` inventory file contains the details for connecting to the cloud VM.
 
