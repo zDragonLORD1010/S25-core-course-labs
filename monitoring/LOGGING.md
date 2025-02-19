@@ -67,7 +67,7 @@ Check logs using Docker logs:
 
 ![Screenshot_28.jpg](Data%20for%20report/Screenshot_28.jpg)
 
-4. Set the **URL** to `http://loki:3100` and click **Save & Test`.
+4. Set the **URL** to `http://loki:3100` and click **Save & Test**.
 
 5. Create queries and dashboards to visualize logs.
 

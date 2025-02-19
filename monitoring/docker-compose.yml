@@ -4,11 +4,33 @@ networks:
   monitoring_net:
 
 services:
+  prometheus:
+    image: prom/prometheus:v2.38.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring_net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9090/-/healthy" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   loki:
     image: grafana/loki:latest
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     networks:
       - monitoring_net
 
@@ -19,6 +41,10 @@ services:
       - ./promtail-config.yaml:/etc/promtail/config.yml
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
     command: -config.file=/etc/promtail/config.yml
+    deploy:
+      resources:
+        limits:
+          memory: 128M
     networks:
       - monitoring_net
 
@@ -50,6 +76,10 @@ services:
           editable: false
         EOF
         /run.sh
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     networks:
       - monitoring_net
 
