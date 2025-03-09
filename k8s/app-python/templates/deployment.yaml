@@ -13,10 +13,15 @@ spec:
       {{- include "app-python.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-secret-config: "secret/data/app-python/config"
+        vault.hashicorp.com/agent-inject-template-config: |
+          {{ .Files.Get "templates/vault-template.yaml" | nindent 10 }}
+        vault.hashicorp.com/role: "app-python"
+        { { - with .Values.podAnnotations } }
+        { { - toYaml . | nindent 8 } }
+        { { - end } }
       labels:
         {{- include "app-python.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
@@ -49,8 +54,19 @@ spec:
             {{ - toYaml .Values.resources | nindent 12 }}
           {{ - with .Values.volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            {{ - toYaml . | nindent 12 }}
+              {{ - end }}
+              env:
+                - name: APP_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "app-python.fullname" . }}-secret
+                      key: APP_SECRET
+                - name: APP_ENV
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "app-python.fullname" . }}-secret
+                      key: APP_ENV
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}

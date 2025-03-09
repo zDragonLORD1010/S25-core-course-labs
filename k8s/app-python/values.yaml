@@ -71,3 +71,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+secrets:
+  appSecret: "secret-key"
+  appEnv: "production"

@@ -20,15 +20,19 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: post-install-hook
+  name: "{{ .Release.Name }}-post-install-hook"
+  labels:
+    {{- include "app-python.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": post-install
-    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
     spec:
       containers:
         - name: post-install
-          image: busybox
-          command: ["sh", "-c", "echo 'Post-install hook running...'; sleep 20"]
+          image: "busybox"
+          command: ['sh', '-c', 'echo Post-install hook running...']
       restartPolicy: Never
+  backoffLimit: 0
