@@ -2,7 +2,7 @@
 
 ## Overview
 
-This web application displays the current time in Moscow, Russia.
+This web application displays the current time in Moscow, Russia. Also, tracks and displays visit counts.
 
 ## Prerequisites
 
@@ -106,3 +106,17 @@ pytest
 ### 3. Optimization steps
 - Improved workflow efficiency by reducing redundant steps.
 - Used best practices in job dependencies to prevent unnecessary re-runs.
+
+## API Screenshots
+
+### Main page
+
+![main.jpg](API_Screenshots/main.jpg)
+
+### Visits endpoint
+
+- The number of visits allowed for the file (`data/visits.txt`) is saved after restarting the container.
+- `http://127.0.0.1:5000/visits`: Returns total visit count
+
+![visits.jpg](API_Screenshots/visits.jpg)
+
